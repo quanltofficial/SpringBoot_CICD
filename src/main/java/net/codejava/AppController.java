@@ -17,7 +17,7 @@ public class AppController {
 	@Autowired
 	private ProductService service; 
 	
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public String viewHomePage(Model model) {
 		List<Product> listProducts = service.listAll();
 		model.addAttribute("listProducts", listProducts);
@@ -37,7 +37,7 @@ public class AppController {
 	public String saveProduct(@ModelAttribute("product") Product product) {
 		service.save(product);
 		
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping("/edit/{id}")
@@ -52,6 +52,6 @@ public class AppController {
 	@RequestMapping("/delete/{id}")
 	public String deleteProduct(@PathVariable(name = "id") int id) {
 		service.delete(id);
-		return "redirect:/";		
+		return "redirect:/home";		
 	}
 }
